@@ -1,11 +1,20 @@
 class Game
     attr_accessor :grid, :player1, :player2
 
-    def initialize()
-        @player1 = []
-        @player2 = []
-        @grid = []
+    def initialize(player1, player2, grid)
+        @player1 = player1
+        @player2 = player2
+        @grid = grid
     end
+
+
+    def movements (player, num)
+        @grid.grid[num] = player.symbol
+    end
+    
+
+
+end
 
     class Grid
         attr_accessor :grid
@@ -27,27 +36,15 @@ class Game
         end
     end
 
-    class Moves
-        attr_accessor :move, :player, :grid
-        def initialize(move,player,grid)
-            @move = move
-            @player = player
-            @grid = grid
-            movements
-        end
+    
 
-        def movements
-            puts @grid.grid[@move] = @player.symbol
-        end
-    end
-end
 
-game = Game.new()
-grid = Game::Grid.new()
-p1 = Game::Players.new('salvador', 'X')
-p2 = Game::Players.new('daniel','o')
+grid = Grid.new()
+p1 = Players.new('salvador', 'X')
+p2 = Players.new('daniel','o')
+game = Game.new(p1, p2, grid)
+game.movements(p1, 3)
 puts grid.board
 puts p1.name
 puts p2.name
-moves = Game::Moves.new(1,p1,grid)
-puts grid.board
+puts game.grid.board
