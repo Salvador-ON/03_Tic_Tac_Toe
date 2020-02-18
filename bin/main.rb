@@ -4,15 +4,17 @@ class Game
     def initialize()
         @player1 = []
         @player2 = []
+        @grid = []
     end
 
     class Grid
+        attr_accessor :grid
         def initialize()
             @grid = [1, 2, 3 , 4, 5, 6, 7, 8, 9]
         end
 
         def board
-            res = " #{@grid[0]} | #{@grid[1]} | #{@grid[2]}\n-----------\n #{@grid[3]} | #{@grid[4]} | #{@grid[5]}\n-----------\n #{@grid[6]} | #{@grid[7]} | #{@grid[8]}"
+            res = " #{ @grid [0]} | #{ @grid [1]} | #{ @grid [2]}\n-----------\n #{ @grid [3]} | #{ @grid [4]} | #{ @grid [5]}\n-----------\n #{ @grid [6]} | #{ @grid [7]} | #{ @grid [8]}"
             return res
         end
     end
@@ -26,31 +28,26 @@ class Game
     end
 
     class Moves
-        attr_accessor :move :player
-        def initialize(move,player)
-            @grid[move].is_a?(Numeric) ? @move = move : return = false
+        attr_accessor :move, :player, :grid
+        def initialize(move,player,grid)
+            @move = move
             @player = player
+            @grid = grid
             movements
         end
 
         def movements
-            player.symbol
+            puts @grid.grid[@move] = @player.symbol
         end
     end
-
-    class Algorithm
-        
-    end
-
 end
 
-game = Game.new
-grid = Game::Grid.new
-p1 = Game::Players.new('Salvador', 'x')
-p2 = Game::Players.new('daniel', 'x')
-
+game = Game.new()
+grid = Game::Grid.new()
+p1 = Game::Players.new('salvador', 'X')
+p2 = Game::Players.new('daniel','o')
 puts grid.board
-puts p1.name 
-puts p1.symbol
-puts p2.name 
-puts p2.symbol
+puts p1.name
+puts p2.name
+moves = Game::Moves.new(1,p1,grid)
+puts grid.board
