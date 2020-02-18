@@ -1,4 +1,16 @@
-#!/usr/bin/env ruby
-# frozen_string_literal: true
+class Game
 
-puts 'Hello world!'
+    class Grid
+        
+    end
+    class Player1
+        
+    end
+    class Player2
+        
+    end
+    class Algorithm
+        
+    end
+    
+end
