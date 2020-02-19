@@ -12,6 +12,20 @@ class Game
   def movements(player, num)
     @grid.grid[num - 1] = player.symbol
   end
+
+  def playing?
+    bool = true
+    bool = false if @grid.grid.none?(Numeric) 
+    bool
+  end
+
+  def who_plays(player)
+    if player == @player1
+      return @player2
+    else
+      return @player1
+    end
+  end
 end
 
 # Grid Class Create the Map of the Game
@@ -55,11 +69,28 @@ name = gets.chomp
 p2 = Players.new(name, ox)
 game = Game.new(p1, p2, grid)
 puts grid.board
-puts 'Player 1 choose your position'
+temp_game = game.playing?
+puts 'Player 1 make your firts move'
 pos = gets.chomp
+who_play = game.who_plays(p1)
 game.movements(p1, pos.to_i)
-puts 'Player 2 choose your position'
-puts grid.board
-pos = gets.chomp
-game.movements(p2, pos.to_i)
-puts grid.board
+while temp_game
+  if who_play == p1
+    who_play = game.who_plays(who_play)
+    puts "#{who_plays} make your move"
+    puts grid.board
+    pos = gets.chomp
+    game.movements(who_play, pos.to_i)
+    puts grid.board
+  else
+    who_play = game.who_plays(who_play)
+    puts "#{who_plays} make your move"
+    puts grid.board
+    pos = gets.chomp
+    game.movements(who_play, pos.to_i)
+    puts grid.board
+  end
+  temp_game = game.playing?
+end
+
+
