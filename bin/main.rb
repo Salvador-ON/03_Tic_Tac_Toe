@@ -7,7 +7,39 @@ class Game
     @player1 = player1
     @player2 = player2
     @grid = grid
-    @a_res = [[1,2,3],[1,2,3]]
+    @a_res = Array.new(3) { Array.new(2, 0) }
+  end
+
+  def conv_to_array
+    k = 0
+    t = 0
+    @grid.grid.each do |n|
+      if k == 0
+        @a_res[k][t] = n
+        puts @a_res[k][t]
+        t += 1
+        if t == 3
+          k += 1
+          t = 0
+        end
+      elsif k == 1
+        @a_res[k][t] = n
+        puts @a_res[k][t]
+        t += 1
+        if t == 3
+          k += 1
+          t = 0
+        end 
+      elsif k == 2
+        @a_res[k][t] = n
+        puts @a_res[k][t]
+        t += 1
+        if t == 3
+          k += 1
+          t = 0
+        end 
+      end
+    end
   end
 
   def movements(player, num)
@@ -99,45 +131,14 @@ def validate_input(pos, grid, validator)
   end
 end
 
-def conv_to_array(game, grid)
-  k = 0
-  t = 0
-  temp = game.grid.grid[1]
-  puts temp
-  game.grid.grid.each do |n|
-    if t == 0
-      puts t
-      puts game.a_res.inspect
-      game.a_res[t][k] = n
-      k += 1
-      if k == 2 
-        k = 0
-        t += 1
-      end
-    elsif t == 1
-      game.a_res[t][k] = n
-      k += 1
-      if k == 2 
-        k = 0
-        t += 1
-      end
-    else
-      game.a_res[t][k] = n
-      k += 1
-      if k == 2 
-        k = 0
-        t += 1
-      end
-    end
-  end
-end
+
 
 def turn(player, game, grid, validator)
-  who_play = game.who_plays(player)
   pos = gets.chomp
   validate_input(pos, grid, validator)
-  game.movements(who_play, pos.to_i)
-  conv_to_array(game, grid)
+  game.movements(player, pos.to_i)
+  game.conv_to_array
+  who_play = game.who_plays(player)
   who_play
 end
 
