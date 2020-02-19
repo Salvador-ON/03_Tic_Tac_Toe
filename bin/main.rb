@@ -2,41 +2,39 @@
 
 # Class Game For Initialization of the Game
 class Game
-  attr_accessor :grid, :player1, :player2, :array_res
+  attr_accessor :grid, :player1, :player2, :a_r, :winner, :k, :j
   def initialize(player1, player2, grid)
     @player1 = player1
     @player2 = player2
     @grid = grid
-    @a_res = Array.new(3) { Array.new(2, 0) }
+    @a_r = Array.new(3) { Array.new(2, 0) }
+    @k = 0
+    @t = 0
   end
   # rubocop: disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
   # rubocop: disable Metrics/MethodLength
 
+  def sum
+    @t += 1
+    return unless @t == 3
+
+    @k += 1
+    @t = 0
+  end
+
   def conv_to_array
-    k = 0
-    t = 0
+    @k = 0
+    @t = 0
     @grid.grid.each do |n|
-      if k.zero?
-        @a_res[k][t] = n
-        t += 1
-        if t == 3
-          k += 1
-          t = 0
-        end
-      elsif k == 1
-        @a_res[k][t] = n
-        t += 1
-        if t == 3
-          k += 1
-          t = 0
-        end
-      elsif k == 2
-        @a_res[k][t] = n
-        t += 1
-        if t == 3
-          k += 1
-          t = 0
-        end
+      if @k.zero?
+        @a_r[@k][@t] = n
+        sum
+      elsif @k == 1
+        @a_r[@k][@t] = n
+        sum
+      elsif @k == 2
+        @a_r[@k][@t] = n
+        sum
       end
     end
   end
@@ -45,27 +43,51 @@ class Game
     @grid.grid[num - 1] = player.symbol
   end
 
+  # rubocop: disable Metrics/AbcSize
+
+  def win
+    if @winner == @player1.symbol
+      puts "#{@player1.name.upcase} Congratulation You Just WON ! ! !"
+    elsif @winner == @player2.symbol
+      puts "#{@player2.name.upcase} Congratulation You Just WON ! ! !"
+    else
+      puts "You're All a Bunch of LOOSERS"
+    end
+  end
+
   def playing?
     bool = true
     (0..2).each do |i|
-      bool = false if (@a_res[i][0] == @a_res[i][1] && @a_res[i][0] == @a_res[i][2])
-      bool = false if (@a_res[0][i] == @a_res[1][i] && @a_res[0][i] == @a_res[2][i])
-      bool = false if (@a_res[0][0] == @a_res[1][1] && @a_res[0][0] == @a_res[2][2])
-      bool = false if (@a_res[0][2] == @a_res[1][1] && @a_res[0][2] == @a_res[2][0])
+      if @a_r[i][0] == @a_r[i][1] && @a_r[i][0] == @a_r[i][2]
+        bool = false
+        @winner = @a_r[i][0]
+      end
+      if @a_r[0][i] == @a_r[1][i] && @a_r[0][i] == @a_r[2][i]
+        bool = false
+        @winner = @a_r[0][i]
+      end
+      if @a_r[0][0] == @a_r[1][1] && @a_r[0][0] == @a_r[2][2]
+        bool = false
+        @winner = @a_r[0][0]
+      end
+      if @a_r[0][2] == @a_r[1][1] && @a_r[0][2] == @a_r[2][0]
+        bool = false
+        @winner = @a_r[0][2]
+      end
     end
     bool = false if @grid.grid.none?(Numeric)
     bool
   end
+  # rubocop: enable Metrics/AbcSize
   # rubocop: enable  Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
   # rubocop: enable Metrics/MethodLength
 
   def who_plays(player)
-    temp = player
     temp = if player == @player1
-      @player2
-      else
-      @player1
-      end
+             @player2
+           else
+             @player1
+           end
     temp
   end
 end
@@ -104,38 +126,38 @@ class Validation
            end
     bool
   end
-# rubocop:disable Metrics/MethodLength
+  # rubocop:disable Metrics/MethodLength
 
   def inputs(input, grid)
     input = input.to_i
     bool = if (input <= 9) && input.positive?
-             bool = if grid.grid[input - 1].is_a?(Numeric)
-                      true
-                    else
-                      false
-                    end
+             if grid.grid[input - 1].is_a?(Numeric)
+               true
+             else
+               false
+             end
            else
              false
            end
     bool
   end
-# rubocop:enable Metrics/MethodLength
+  # rubocop:enable Metrics/MethodLength
 
   def names(name)
     bool = if name.strip.empty?
-      true
-    else
-      false
-    end
+             true
+           else
+             false
+           end
     bool
   end
 
   def symbols(symbol)
     array = %w[X O]
     bool = if array.any?(symbol)
-            false
+             false
            else
-            true
+             true
            end
     bool
   end
@@ -158,6 +180,8 @@ def turn(player, game, grid, validator)
   who_play = game.who_plays(player)
   who_play
 end
+
+puts "\e[H\e[2J"
 
 validator = Validation.new
 grid = Grid.new
@@ -198,9 +222,15 @@ game = Game.new(p1, p2, grid)
 game.conv_to_array
 temp_game = game.playing?
 who_play = game.who_plays(p2)
+puts "\e[H\e[2J"
 while temp_game
   puts "#{who_play.name} make your move, in a available numeric space"
   puts grid.board
   who_play = turn(who_play, game, grid, validator)
   temp_game = game.playing?
+  puts "\e[H\e[2J"
 end
+puts "\e[H\e[2J"
+puts grid.board
+puts ' '
+puts game.win
