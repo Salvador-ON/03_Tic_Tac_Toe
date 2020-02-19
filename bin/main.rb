@@ -48,9 +48,12 @@ class Game
   def playing?
     bool = true
     (0..2).each do |i|
-      bool = false if (@a_res[i][0] == @a_res[i][1] && @a_res[i][0] == @a_res[i][2]) || (@a_res[0][i] == @a_res[1][i] && @a_res[0][i] == @a_res[2][i])
-      bool = false if (@a_res[0][0] == @a_res[1][1] && @a_res[0][0] == @a_res[2][2]) || (@a_res[0][2] == @a_res[1][1] && @a_res[0][2] == @a_res[2][0])
+      bool = false if (@a_res[i][0] == @a_res[i][1] && @a_res[i][0] == @a_res[i][2])
+      bool = false if (@a_res[0][i] == @a_res[1][i] && @a_res[0][i] == @a_res[2][i])
+      bool = false if (@a_res[0][0] == @a_res[1][1] && @a_res[0][0] == @a_res[2][2])
+      bool = false if (@a_res[0][2] == @a_res[1][1] && @a_res[0][2] == @a_res[2][0])
     end
+    bool = false if @grid.grid.none?(Numeric)
     bool
   end
   # rubocop: enable  Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
@@ -58,7 +61,11 @@ class Game
 
   def who_plays(player)
     temp = player
-    player == @player1 ? temp = @player2 : temp = @player1
+    temp = if player == @player1
+      @player2
+      else
+      @player1
+      end
     temp
   end
 end
@@ -97,29 +104,39 @@ class Validation
            end
     bool
   end
+# rubocop:disable Metrics/MethodLength
 
   def inputs(input, grid)
     input = input.to_i
-    bool = if (input <= 9) && (input > 0)
-             bool = if (grid.grid[input - 1].is_a?(Numeric))
+    bool = if (input <= 9) && input.positive?
+             bool = if grid.grid[input - 1].is_a?(Numeric)
                       true
                     else
                       false
                     end
-           else 
+           else
              false
            end
     bool
   end
+# rubocop:enable Metrics/MethodLength
 
   def names(name)
-    name.strip.empty? ? bool = true : bool = false
+    bool = if name.strip.empty?
+      true
+    else
+      false
+    end
     bool
   end
 
   def symbols(symbol)
     array = %w[X O]
-    array.any?(symbol) ? bool = false : bool = true
+    bool = if array.any?(symbol)
+            false
+           else
+            true
+           end
     bool
   end
 end
