@@ -52,9 +52,54 @@ class Players
   end
 end
 
+# Validation of Variables
+class Validation
+  def move(input,grid)
+    bool = if grid.grid[input].is_a?(Numeric)
+             true
+           else
+             false
+           end
+    bool
+  end
+  def inputs(input)
+    bool = if (input <= 9) && (input > 0) && !(input.any?(' '))
+             bool = true
+           else
+             bool = false
+           end
+    bool
+  end
+  def names(name)
+    name.strip.empty? ? bool = true : bool = false
+    bool
+  end
+  def symbols(symbol)
+    array = ['X', 'O']
+    symbol.any?(array) ? bool = true : bool = false
+    bool
+  end
+end
+
+def turn(player,game,grid)
+  who_play = game.who_plays(player)
+  puts "#{who_play.name} make your move, in a available numeric space"
+  puts grid.board
+  pos = gets.chomp
+  game.movements(who_play, pos.to_i)
+  who_play
+end
+
+validator = Validation.new
 grid = Grid.new
 puts 'Enter player 1 name'
 name = gets.chomp
+temp_bool = validator.names(name)
+while temp_bool
+  puts 'Invalid value please reenter a name'
+  name = gets.chomp
+  temp_bool = validator.names(name)
+end
 puts 'What do you want to use X or O'
 xo = gets.chomp
 xo = xo.upcase
@@ -70,26 +115,12 @@ p2 = Players.new(name, ox)
 game = Game.new(p1, p2, grid)
 puts grid.board
 temp_game = game.playing?
-puts 'Player 1 make your firts move'
+puts "#{p1.name} make your firts move"
 pos = gets.chomp
-who_play = game.who_plays(p1)
+who_play = game.who_plays(p2)
 game.movements(p1, pos.to_i)
 while temp_game
-  if who_play == p1
-    who_play = game.who_plays(who_play)
-    puts "#{who_plays} make your move"
-    puts grid.board
-    pos = gets.chomp
-    game.movements(who_play, pos.to_i)
-    puts grid.board
-  else
-    who_play = game.who_plays(who_play)
-    puts "#{who_plays} make your move"
-    puts grid.board
-    pos = gets.chomp
-    game.movements(who_play, pos.to_i)
-    puts grid.board
-  end
+  who_play = turn(who_play,game,grid)
   temp_game = game.playing?
 end
 
