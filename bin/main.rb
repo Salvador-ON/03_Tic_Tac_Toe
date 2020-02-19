@@ -65,14 +65,14 @@ class Validation
   def inputs(input, grid)
     input = input.to_i
     bool = if (input <= 9) && (input > 0)
-             bool = if !(grid.grid[input].is_a?(Numeric))
-            bool = true
-             else
-              bool = false
-            end
-        else 
-          bool = false
-        end
+             bool = if (grid.grid[input - 1].is_a?(Numeric))
+                      bool = true
+                    else
+                      bool = false
+                    end
+           else 
+             bool = false
+           end
     bool
   end
   def names(name)
@@ -93,9 +93,9 @@ def turn(player, game, grid, validator)
   pos = gets.chomp
   validate_input = validator.inputs(pos, grid)
   while  !validate_input
-  puts 'Invalid postion please reenter a correct position'
-  pos = gets.chomp
-  validate_input = validator.inputs(pos, grid)
+    puts 'Invalid postion please reenter a correct position'
+    pos = gets.chomp
+    validate_input = validator.inputs(pos, grid)
   end
   game.movements(who_play, pos.to_i)
   who_play
