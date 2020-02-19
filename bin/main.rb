@@ -9,14 +9,15 @@ class Game
     @grid = grid
     @a_res = Array.new(3) { Array.new(2, 0) }
   end
+  # rubocop: disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
+  # rubocop: disable Metrics/MethodLength
 
   def conv_to_array
     k = 0
     t = 0
     @grid.grid.each do |n|
-      if k == 0
+      if k.zero?
         @a_res[k][t] = n
-        puts @a_res[k][t]
         t += 1
         if t == 3
           k += 1
@@ -24,20 +25,18 @@ class Game
         end
       elsif k == 1
         @a_res[k][t] = n
-        puts @a_res[k][t]
         t += 1
         if t == 3
           k += 1
           t = 0
-        end 
+        end
       elsif k == 2
         @a_res[k][t] = n
-        puts @a_res[k][t]
         t += 1
         if t == 3
           k += 1
           t = 0
-        end 
+        end
       end
     end
   end
@@ -48,16 +47,19 @@ class Game
 
   def playing?
     bool = true
-    bool = false if @grid.grid.none?(Numeric) 
+    (0..2).each do |i|
+      bool = false if (@a_res[i][0] == @a_res[i][1] && @a_res[i][0] == @a_res[i][2]) || (@a_res[0][i] == @a_res[1][i] && @a_res[0][i] == @a_res[2][i])
+      bool = false if (@a_res[0][0] == @a_res[1][1] && @a_res[0][0] == @a_res[2][2]) || (@a_res[0][2] == @a_res[1][1] && @a_res[0][2] == @a_res[2][0])
+    end
     bool
   end
+  # rubocop: enable  Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
+  # rubocop: enable Metrics/MethodLength
 
   def who_plays(player)
-    if player == @player1
-      return @player2
-    else
-      return @player1
-    end
+    temp = player
+    player == @player1 ? temp = @player2 : temp = @player1
+    temp
   end
 end
 
@@ -131,8 +133,6 @@ def validate_input(pos, grid, validator)
   end
 end
 
-
-
 def turn(player, game, grid, validator)
   pos = gets.chomp
   validate_input(pos, grid, validator)
@@ -178,6 +178,7 @@ while temp_bool
 end
 p2 = Players.new(name, ox)
 game = Game.new(p1, p2, grid)
+game.conv_to_array
 temp_game = game.playing?
 who_play = game.who_plays(p2)
 while temp_game
