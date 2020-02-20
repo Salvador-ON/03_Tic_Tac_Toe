@@ -9,34 +9,23 @@ To get started, you should first get this file in your local machine by download
 ```git
 git clone https://github.com/Salvador-ON/03_Tic_Tac_Toe.git
 ```
+or you could play it online [here](https://repl.it/@SalvadorON/03TicTacToe), and skip the Prerequisites & Running the Program steps
 
 ### Prerequisites
 
-What things you need to install the software and how to install them
+Before you start playing the game, you need to be sure that you have ruby installed in your computer, by typing 
 
 ```
-Give examples
+ruby -v
 ```
 
-### Installing
+and it should return something like
 
-A step by step series of examples that tell you how to get a development env running
+####### ruby 2.6.##### (20##-##-## revision 6####) [########]
 
-Say what the step will be
+If it's not installed in your sytem, follow this [guide](https://www.ruby-lang.org/en/documentation/installation/) and it will help you te get it done
 
-```
-Give the example
-```
-
-And repeat
-
-```
-until finished
-```
-
-End with an example of getting some data out of the system or using it for a little demo
-
-## Running the tests
+## Running the Program 
 
 Explain how to run the automated tests for this system
 
