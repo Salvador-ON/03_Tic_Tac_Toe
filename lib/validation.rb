@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Validation of Variables
 class Validation
   def move(input, grid)
