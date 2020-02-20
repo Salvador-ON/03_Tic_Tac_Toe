@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Grid Class Create the Map of the Game
 class Grid
   attr_accessor :grid
