@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Class Game For Initialization of the Game
 class Game
   attr_accessor :grid, :player1, :player2, :a_r, :winner, :k, :j
