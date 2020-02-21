@@ -21,11 +21,12 @@ class Start
       pos = gets.chomp
       validating = @validator.inputs(pos, grid)
     end
+    pos
   end
 
   def turn(player, game, grid)
     pos = gets.chomp
-    validate_input(pos, grid)
+    pos = validate_input(pos, grid)
     game.movements(player, pos.to_i)
     game.conv_to_array
     who_play = game.who_plays(player)

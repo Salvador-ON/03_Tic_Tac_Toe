@@ -46,13 +46,14 @@ class Game
   # rubocop: disable Metrics/AbcSize
 
   def win
-    if @winner == @player1.symbol
-      puts "#{@player1.name.upcase} Congratulation You Just WON ! ! !"
-    elsif @winner == @player2.symbol
-      puts "#{@player2.name.upcase} Congratulation You Just WON ! ! !"
-    else
-      puts "You're All a Bunch of LOOSERS"
-    end
+    temp_string = if @winner == @player1.symbol
+                    "#{@player1.name.upcase} Congratulation You Just WON ! ! !"
+                  elsif @winner == @player2.symbol
+                    "#{@player2.name.upcase} Congratulation You Just WON ! ! !"
+                  else
+                    "You're All a Bunch of LOOSERS"
+                  end
+    temp_string
   end
 
   def playing?
