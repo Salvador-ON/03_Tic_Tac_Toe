@@ -7,8 +7,6 @@ require_relative '../lib/validation.rb'
 
 # Initialization of the Game
 class Start
-  attr_accessor :p1, :p2, :validator, :grid
-
   def initialize
     @validator = Validation.new
     @grid = Grid.new

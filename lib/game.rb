@@ -2,7 +2,7 @@
 
 # Class Game For Initialization of the Game
 class Game
-  attr_accessor :grid, :player1, :player2, :a_r, :winner, :k, :j
+  attr_reader :player1, :player2, :winner
   def initialize(player1, player2, grid)
     @player1 = player1
     @player2 = player2
