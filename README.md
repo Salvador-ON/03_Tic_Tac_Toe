@@ -9,7 +9,7 @@ To get started, you should first get this file in your local machine by download
 ```git
 git clone https://github.com/Salvador-ON/03_Tic_Tac_Toe.git
 ```
-or you could play it online [here](https://repl.it/@SalvadorON/03TicTacToe), and skip the Prerequisites & Running the Program steps
+or you could play it online [here](https://repl.it/@SalvadorON/03TicTacToe), and skip the Prerequisites & Running the Program steps.
 
 ### Prerequisites
 
@@ -25,58 +25,58 @@ and it should return something like
 
 If it's not installed in your sytem, follow this [guide](https://www.ruby-lang.org/en/documentation/installation/) and it will help you te get it done
 
+## Rules
+
+1. The game is played on a grid that's 3 squares by 3 squares.
+
+2. You are X, your friend is O. Players take turns putting their marks in empty squares.
+
+3. The first player to get 3 of her marks in a row (up, down, across, or diagonally) is the winner.
+
+4. When all 9 squares are full, the game is over. If no player has 3 marks in a row, the game ends in a tie.
+
 ## Running the Program 
 
-Explain how to run the automated tests for this system
+For the online version to start the program You only need to click on the Run Button.
 
-### Break down into end to end tests
-
-Explain what these tests test and why
+For the local machine version You need to open your terminal, and go to the downloaded folder, and You need to run the next comand.
 
 ```
-Give an example
+ruby bin/main.rb
 ```
-
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-## Deployment
-
-Add additional notes about how to deploy this on a live system
 
 ## Built With
 
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
+* [Ruby](https://www.ruby-lang.org)
 
-## Contributing
-
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
-
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
 
 ## Authors
 
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
+**Salvador Olvera**
+- Linkedin: [Salvador Olvera](https://www.linkedin.com/in/salvador-olvera-n)
+- Github: [@Salvador-ON](https://github.com/Salvador-ON)
+- Twitter: [@Salvador Olvera_ON](https://twitter.com/Salvador_ON)
 
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+**Daniel Laloush**
+- Linkedin: [Daniel Laloush](https://www.linkedin.com/in/daniel-laloush-0a7331a9)
+- Github: [@Dandush03](https://github.com/Dandush03)
+- Twitter: [@d_laloush](https://twitter.com/d_laloush)
 
-## License
+## Contributing
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+Contributions, issues and feature requests are welcome!
+
+Feel free to check the [issues page](./issues/).
+
+## Show your support
+
+Give as start if you like this project!
 
 ## Acknowledgments
 
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
+- Hat tip to anyone whose code was used
+- Thanks to Microverse!
 
+## License
 
+This project is [MIT](lic.url) licensed.
