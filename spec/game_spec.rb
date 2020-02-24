@@ -22,4 +22,29 @@ RSpec.describe Game do
       expect(grid.grid[0] == 'X').to eql(true)
     end
   end
+
+  describe '#win' do
+    it 'Return True if p1 Won' do
+      grid.grid = ['X', 'X', 'X', 4, 5, 6, 7, 8, 9]
+      game.conv_to_array
+      game.playing?
+      expect(game.win == 'P1 Congratulation You Just WON ! ! !').to eql(true)
+    end
+
+    it 'Return True if p2 Won' do
+      grid.grid = ['O', 'O', 'O', 4, 5, 6, 7, 8, 9]
+      game.conv_to_array
+      game.playing?
+      expect(game.win == 'P2 Congratulation You Just WON ! ! !').to eql(true)
+    end
+
+    it 'Return True if no one Won' do
+      # grid.grid = ['X', '0', 'O', 'O', 'X', 'X', 'X', 'X', 'O']
+      # game.conv_to_array
+      # puts game.conv_to_array.inspect
+      # game.playing?
+      game.a_r = nil
+      expect(game.win == "You're All a Bunch of LOOSERS").to eql(true)
+    end
+  end
 end
