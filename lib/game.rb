@@ -58,6 +58,7 @@ class Game
 
   def playing?
     bool = true
+    @winner = nil
     (0..2).each do |i|
       if @a_r[i][0] == @a_r[i][1] && @a_r[i][0] == @a_r[i][2]
         bool = false
