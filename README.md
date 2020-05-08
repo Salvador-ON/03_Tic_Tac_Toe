@@ -23,7 +23,7 @@ and it should return something like
 
 ####### ruby 2.6.##### (20##-##-## revision 6####) [########]
 
-If it's not installed in your sytem, follow this [guide](https://www.ruby-lang.org/en/documentation/installation/) and it will help you te get it done
+If it's not installed in your system, follow this [guide](https://www.ruby-lang.org/en/documentation/installation/) and it will help you te get it done
 
 ## Rules
 
@@ -39,7 +39,7 @@ If it's not installed in your sytem, follow this [guide](https://www.ruby-lang.o
 
 For the online version to start the program You only need to click on the Run Button.
 
-For the local machine version You need to open your terminal, and go to the downloaded folder, and You need to run the next comand.
+For the local machine version, You need to open your terminal and go to the downloaded folder, and You need to run the next command.
 
 ```
 ruby bin/main.rb
@@ -48,6 +48,14 @@ ruby bin/main.rb
 ## Built With
 
 * [Ruby](https://www.ruby-lang.org)
+
+## Test-driven development RSPEC
+
+The code includes unit testing using RSpec. To start the test run the next line in your terminal:
+
+```
+rspec
+```
 
 
 ## Authors
@@ -64,17 +72,16 @@ ruby bin/main.rb
 
 ## Contributing
 
-Contributions, issues and feature requests are welcome!
+Contributions, issues, and feature requests are welcome!
 
 Feel free to check the [issues page](./issues/).
 
 ## Show your support
 
-Give as start if you like this project!
+Give a start if you like this project!
 
 ## Acknowledgments
 
-- Hat tip to anyone whose code was used
 - Thanks to Microverse!
 
 ## License
